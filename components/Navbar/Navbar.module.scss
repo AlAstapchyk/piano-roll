@@ -1,0 +1,20 @@
+.navbar {
+  display: flex;
+  position: fixed;
+  width: 100%;
+  height: var(--navbar-height);
+  padding-inline: var(--global-padding);
+  background-color: var(--navbar-color);
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.8); /* optional drop shadow */
+  z-index: 1000;
+
+  div.logoContainer {
+    display: flex;
+    align-items: center;
+    width: auto;
+    height: var(--navbar-height);
+    margin-block: auto;
+    fill: white;
+    cursor: pointer;
+  }
+}
