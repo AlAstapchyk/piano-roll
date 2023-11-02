@@ -146,6 +146,9 @@ const PianoRollView: React.FC<PianoRollViewProps> = ({ data, rollId = 0 }) => {
           )}
         </SkeletonTheme>
       </div>
+      <div className={s.description}>
+        <p className={s.title}>This is piano roll number {rollId + 1}</p>
+      </div>
     </>
   );
 };

@@ -17,11 +17,25 @@ div.pianoRollDisplay {
       transform: scale(1.1);
     }
   }
+
+  .pianoRollContainer {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media screen and (max-width: 1000px) {
+    .pianoRollContainer {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media screen and (max-width: 600px) {
+    .pianoRollContainer {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
 }
 
 .pianoRollContainer {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   gap: 1rem;
 
   .loading {
@@ -53,7 +67,7 @@ div.pianoRollDisplay {
     .title {
       margin-block: 0.5rem;
     }
-    
+
     .rightArrow {
       margin-left: auto;
       height: 2rem;
@@ -69,14 +83,19 @@ div.pianoRollDisplay {
 }
 
 div.pianoRollView {
-  width: 69.2%;
-  // height: calc(70vh - var(--navbar-height));
+  width: 100%;
   height: 30rem;
   border-radius: var(--simple-border-radius);
   svg.pianoRollSvg {
-      height: 100%;
-      width: 100%;
-      border-radius: var(--simple-border-radius);
-      box-shadow: 0 0 0.5rem rgba(0,0,0, 0.5);
+    height: 100%;
+    width: 100%;
+    border-radius: var(--simple-border-radius);
+    box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
+  }
+}
+div.description {
+  width: 100%;
+  p.title {
+    margin-top: 0.5rem;
   }
 }

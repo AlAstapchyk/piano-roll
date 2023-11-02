@@ -1,3 +1,27 @@
+div.page {
+  display: flex;
+}
 main.main {
-    padding-block: 1rem;
+  display: flex;
+  flex-direction: column;
+  width: 65%;
+  padding-block: 1rem;
+}
+div.rightContent {
+  padding-block: 1rem;
+  flex-grow: 1;
+  margin-left: 1.5rem;
+}
+@media screen and (max-width: 1000px) {
+  div.page {
+    display: flex;
+    flex-direction: column;
+  }
+  main.main {
+    width: 100%;
+    display: flex;
+  }
+  div.rightContent {
+    margin-left: 0;
+  }
 }

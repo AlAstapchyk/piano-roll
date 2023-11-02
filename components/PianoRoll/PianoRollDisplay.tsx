@@ -1,10 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import s from "./PianoRoll.module.scss";
-import PianoRollCard from "./PianoRollCard";
 import { loadPianoRollData } from "@/api/PianoRollData.js";
-
-const CARDS_NUMBER = 33;
+import PianoRollContainer from "./PianoRollContainer";
 
 const PianoRollDisplay = () => {
   const [data, setData] = useState<any[]>();
@@ -33,11 +31,7 @@ const PianoRollDisplay = () => {
       >
         Reload Piano Rolls
       </button>
-      <div className={s.pianoRollContainer}>
-        {Array.from({ length: CARDS_NUMBER }, (_, i) => (
-          <PianoRollCard data={data} rollId={i + 1} key={i + 1} />
-        ))}
-      </div>
+      <PianoRollContainer data={data} />
     </div>
   );
 };
