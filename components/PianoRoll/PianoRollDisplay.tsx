@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import s from "./PianoRoll.module.scss";
 import PianoRollCard from "./PianoRollCard";
-import { loadPianoRollData } from "@/api/PianoRollData";
+import { loadPianoRollData } from "@/api/PianoRollData.js";
 
 const CARDS_NUMBER = 33;
 

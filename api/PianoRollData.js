@@ -5,6 +5,7 @@ export const loadPianoRollData = async () => {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
     const jsonData = await response.json();
+    console.log(jsonData);
     return jsonData;
   } catch (error) {
     console.error("Error loading data:", error);

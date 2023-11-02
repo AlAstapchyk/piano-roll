@@ -16,6 +16,21 @@ export default class PianoRoll {
     this.svgElement = svgElement;
     this.end = null;
 
+    let minStartTime = Number.POSITIVE_INFINITY;
+    let maxEndTime = Number.NEGATIVE_INFINITY;
+
+    // Calculate the start and end times
+    sequence.forEach((note) => {
+      if (note.start < minStartTime) {
+        minStartTime = note.start;
+      }
+      if (note.end > maxEndTime) {
+        maxEndTime = note.end;
+      }
+    });
+
+    this.duration = maxEndTime - minStartTime;
+
     // PianoRoll brand
     const backgroundStartColor = { r: 175, g: 200, b: 220 };
     // #154151
@@ -146,6 +161,12 @@ export default class PianoRoll {
       this.svgElement.appendChild(line);
     }
   }
+  // getDuration() {
+  //   if (this.start !== null && this.end !== null) {
+  //     return this.end - this.start;
+  //   }
+  //   return 0;
+  // }
 }
 
 export const createPianoRoll = (data, rollId, svg) => {
@@ -154,4 +175,5 @@ export const createPianoRoll = (data, rollId, svg) => {
     svg,
     data.slice(rollId * 60, (rollId + 1) * 60)
   );
+  // console.log(pianoRoll.duration);
 };

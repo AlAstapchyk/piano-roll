@@ -1,10 +1,9 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 "use client";
-
+/* eslint-disable react-hooks/rules-of-hooks */
 import { loadPianoRollData } from "@/api/PianoRollData";
 import { useEffect, useState } from "react";
 import s from "./page.module.scss";
-import { createPianoRoll } from "@/components/pianoroll";
+import PianoRollView from "@/components/PianoRoll/PianoRollView";
 
 const page = () => {
   const [data, setData] = useState<any>();
@@ -18,22 +17,11 @@ const page = () => {
     fetchData();
   }, []);
 
-  const PianoRollView = ({ rollId = 1 }) => {
-    return (
-      <div className={s.pianoRollView}>
-        <svg
-          className={s.pianoRollSvg}
-          ref={(svg) => createPianoRoll(data, rollId, svg)}
-        />
-      </div>
-    );
-  };
-
   if (data?.length)
     return (
       <div className="page">
-        <main>
-          <PianoRollView />
+        <main className={s.main}>
+          <PianoRollView data={data} />
         </main>
         <div className="rightContent"></div>
       </div>
