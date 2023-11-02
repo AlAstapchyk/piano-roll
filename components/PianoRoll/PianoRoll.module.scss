@@ -99,3 +99,14 @@ div.description {
     margin-top: 0.5rem;
   }
 }
+
+@media screen and (max-width: 768) {
+  .pianoRollCard {
+    .description {
+      .rightArrow {
+        transform: scale(1) !important;
+        transition: none;
+      }
+    }
+  }
+}

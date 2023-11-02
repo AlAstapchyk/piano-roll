@@ -8,10 +8,9 @@ interface PianoRollViewProps {
   data?: any;
   rollId?: number;
 }
-
 const PianoRollView: React.FC<PianoRollViewProps> = ({ data, rollId = 0 }) => {
   const svgRef = useRef<SVGSVGElement | null>(null);
-  const [highlightingRect, setHighlightedRect] =
+  const [highlightingRect, setHighlightingRect] =
     useState<SVGRectElement | null>(null);
   const startXRef = useRef<number | null>(null);
   const endXRef = useRef<number | null>(null);
@@ -42,7 +41,7 @@ const PianoRollView: React.FC<PianoRollViewProps> = ({ data, rollId = 0 }) => {
       newHighlightedRect.setAttribute("opacity", "0.5");
 
       svgRef.current?.appendChild(newHighlightedRect);
-      setHighlightedRect(newHighlightedRect);
+      setHighlightingRect(newHighlightedRect);
     };
 
     const handleMouseDown = (event: MouseEvent) => {
@@ -96,17 +95,6 @@ const PianoRollView: React.FC<PianoRollViewProps> = ({ data, rollId = 0 }) => {
         startXRef.current = null;
       }
     };
-    const removeHighlighting = () => {
-      if (highlightingRect) {
-        svgElement.removeChild(highlightingRect);
-        setHighlightedRect(null);
-      }
-      noteCounterRef.current = 0;
-      const noteRects = svgElement.querySelectorAll("rect.note-rectangle");
-      for (let i = 0; i < noteRects.length; i++) {
-        noteRects[i].setAttribute("fill", "black");
-      }
-    };
 
     svgElement.addEventListener("mousedown", handleMouseDown);
     svgElement.addEventListener("mousemove", handleMouseMove);
@@ -121,9 +109,26 @@ const PianoRollView: React.FC<PianoRollViewProps> = ({ data, rollId = 0 }) => {
     };
   }, [highlightingRect]);
 
+  const removeHighlighting = () => {
+    const svgElement = svgRef.current;
+    if (!svgElement) return;
+
+    if (highlightingRect) {
+      svgElement.removeChild(highlightingRect);
+      setHighlightingRect(null);
+    }
+    noteCounterRef.current = 0;
+    const noteRects = svgElement?.querySelectorAll("rect.note-rectangle");
+    for (let i = 0; i < noteRects.length; i++) {
+      noteRects[i].setAttribute("fill", "black");
+    }
+  };
+
   useEffect(() => {
+    removeHighlighting();
+    if (svgRef.current) svgRef.current.innerHTML = "";
     createPianoRoll(data, rollId, svgRef.current);
-  }, []);
+  }, [rollId]);
 
   const logInfo = () => {
     console.log(`Start point: ${startXRef.current}`);
@@ -139,7 +144,7 @@ const PianoRollView: React.FC<PianoRollViewProps> = ({ data, rollId = 0 }) => {
           highlightColor="#afc8dc"
           borderRadius="1rem"
         >
-          {data?.length ? (
+          {rollId !== undefined ? (
             <svg className={s.pianoRollSvg} ref={svgRef} />
           ) : (
             <Skeleton height="100%" />

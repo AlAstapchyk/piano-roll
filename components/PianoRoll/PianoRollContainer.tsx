@@ -5,12 +5,13 @@ import s from "./PianoRoll.module.scss";
 interface PianoRollContainerProps {
   cardsNumber?: number;
   data?: any;
+  excludedId?: number
 }
-const PianoRollContainer = ({ cardsNumber = 33, data }: PianoRollContainerProps) => {
+const PianoRollContainer = ({ cardsNumber = 33, data, excludedId }: PianoRollContainerProps) => {
   return (
     <div className={s.pianoRollContainer}>
       {Array.from({ length: cardsNumber }, (_, i) => (
-        <PianoRollCard data={data} rollId={i + 1} key={i + 1} />
+        <PianoRollCard data={data} rollId={i} key={i} />
       ))}
     </div>
   );

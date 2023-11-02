@@ -7,28 +7,34 @@ import rightArrowSvg from "../../public/assets/right-arrow.svg";
 import Link from "next/link.js";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { useEffect, useRef } from "react";
 
 interface PianoRollCardProps {
   rollId: number;
   data?: any;
 }
 const PianoRollCard = ({ rollId, data }: PianoRollCardProps) => {
+  const svgRef = useRef<SVGSVGElement | null>(null);
+
+  useEffect(() => {
+    if (data.length) createPianoRoll(data, rollId, svgRef.current);
+  }, [data]);
+
   return (
     <SkeletonTheme
       baseColor="white"
       highlightColor="#afc8dc"
       borderRadius="1rem"
     >
-      {data?.length ? (
+      {data.length ? (
         <div className={s.pianoRollCard} key={rollId}>
-          <Link href="/listen">
-            <svg
-              className={s.pianoRollSvg}
-              ref={(svg) => createPianoRoll(data, rollId, svg)}
-            />
+          <Link href={"/listen?id=" + rollId}>
+            <svg className={s.pianoRollSvg} ref={svgRef} />
 
             <div className={s.description}>
-              <p className={s.title}>This is a piano roll number {rollId}</p>
+              <p className={s.title}>
+                This is a piano roll number {rollId + 1}
+              </p>
 
               <Image
                 className={s.rightArrow}

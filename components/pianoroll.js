@@ -175,5 +175,4 @@ export const createPianoRoll = (data, rollId, svg) => {
     svg,
     data.slice(rollId * 60, (rollId + 1) * 60)
   );
-  // console.log(pianoRoll.duration);
 };

@@ -3,6 +3,11 @@ import { Inter } from "next/font/google";
 import "./globals.scss";
 import "./variables.scss";
 import Navbar from "@/components/Navbar/Navbar";
+import { useAppDispatch } from "@/redux/hooks";
+// import { useEffect, useState } from "react";
+import { loadPianoRollData } from "@/api/PianoRollData";
+import { setData } from "@/redux/dataSlice";
+import ReduxProvider from "@/redux/reduxProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,8 +27,10 @@ export default function RootLayout({
         <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
       </head>
       <body className={inter.className}>
-        <Navbar />
-        {children}
+        <ReduxProvider>
+          <Navbar />
+          {children}
+        </ReduxProvider>
       </body>
     </html>
   );

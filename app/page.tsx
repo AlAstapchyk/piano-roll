@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <div className="page">
       <main className={s.main}>
-        <PianoRollDisplay/>
+        <PianoRollDisplay />
       </main>
     </div>
   );
