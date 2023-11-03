@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import s from "./PianoRoll.module.scss";
 import { loadPianoRollData } from "@/api/PianoRollData.js";
 import PianoRollContainer from "./PianoRollContainer";

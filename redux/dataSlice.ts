@@ -1,20 +1,12 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-type stateType = {
-  start: number;
-  end: number;
-  duration: number;
-  pitch: number;
-  velocity: number;
-};
-
-const initialState: stateType[] = [];
+const initialState: any[] = [];
 
 export const data = createSlice({
   name: "data",
   initialState,
   reducers: {
-    setData: (state: stateType[], action: PayloadAction<stateType[]>) => {
+    setData: (state: any[], action: PayloadAction<any[]>) => {
       state = action.payload;
       return action.payload;
     },

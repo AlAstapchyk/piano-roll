@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useRef, useState, useEffect } from "react";
 import s from "./PianoRoll.module.scss";
 import { createPianoRoll } from "@/components/pianoroll";
@@ -30,7 +32,7 @@ const PianoRollView: React.FC<PianoRollViewProps> = ({ data, rollId = 0 }) => {
       );
       return pointToSvg.x;
     };
-    const createHighlightingRect = (x: number) => {
+    const createHighlightingRect = () => {
       const newHighlightedRect = document.createElementNS(
         "http://www.w3.org/2000/svg",
         "rect"
@@ -43,26 +45,7 @@ const PianoRollView: React.FC<PianoRollViewProps> = ({ data, rollId = 0 }) => {
       svgRef.current?.appendChild(newHighlightedRect);
       setHighlightingRect(newHighlightedRect);
     };
-
-    const handleMouseDown = (event: MouseEvent) => {
-      removeHighlighting();
-      startXRef.current = convertScreenToSvgX(event.clientX);
-      createHighlightingRect(startXRef.current);
-    };
-
-    const handleMouseMove = (event: MouseEvent) => {
-      if (startXRef.current === null) return;
-      const currentX = convertScreenToSvgX(event.clientX);
-      endXRef.current = currentX;
-      const startX = startXRef.current;
-      const x = Math.min(currentX, startX);
-      const width = Math.abs(currentX - startX);
-
-      highlightingRect?.setAttribute("x", String(x));
-      highlightingRect?.setAttribute("width", String(width));
-    };
-
-    const handleMouseUp = (event: MouseEvent) => {
+    const highlightNotes = () => {
       if (startXRef.current === null || endXRef.current === null) return;
 
       const leftX = Math.min(startXRef.current, endXRef.current);
@@ -85,6 +68,27 @@ const PianoRollView: React.FC<PianoRollViewProps> = ({ data, rollId = 0 }) => {
 
       noteCounterRef.current = newNoteCounter;
       logInfo();
+    };
+
+    const handleMouseDown = (event: MouseEvent) => {
+      removeHighlighting();
+      startXRef.current = convertScreenToSvgX(event.clientX);
+      createHighlightingRect();
+    };
+    const handleMouseMove = (event: MouseEvent) => {
+      if (startXRef.current === null) return;
+      const currentX = convertScreenToSvgX(event.clientX);
+      endXRef.current = currentX;
+      const startX = startXRef.current;
+      const x = Math.min(currentX, startX);
+      const width = Math.abs(currentX - startX);
+
+      highlightingRect?.setAttribute("x", String(x));
+      highlightingRect?.setAttribute("width", String(width));
+    };
+    const handleMouseUp = (event: MouseEvent) => {
+      handleMouseMove(event);
+      highlightNotes();
 
       startXRef.current = null;
       endXRef.current = null;
@@ -100,7 +104,6 @@ const PianoRollView: React.FC<PianoRollViewProps> = ({ data, rollId = 0 }) => {
     svgElement.addEventListener("mousemove", handleMouseMove);
     svgElement.addEventListener("mouseup", handleMouseUp);
     svgElement.addEventListener("mouseleave", handleMouseLeave);
-
     return () => {
       svgElement.removeEventListener("mousedown", handleMouseDown);
       svgElement.removeEventListener("mousemove", handleMouseMove);
@@ -128,7 +131,7 @@ const PianoRollView: React.FC<PianoRollViewProps> = ({ data, rollId = 0 }) => {
     removeHighlighting();
     if (svgRef.current) svgRef.current.innerHTML = "";
     createPianoRoll(data, rollId, svgRef.current);
-  }, [rollId]);
+  }, [data, rollId]);
 
   const logInfo = () => {
     console.log(`Start point: ${startXRef.current}`);

@@ -11,10 +11,10 @@ body {
 }
 
 body {
-  font-family: 'Mulish', sans-serif;
+  font-family: "Mulish", sans-serif;
   cursor: default;
-  background-color: #F0F0F0;
-  color: #1C1C1A;
+  background-color: #f0f0f0;
+  color: #1c1c1a;
   overflow: auto;
   display: flex;
   flex-direction: column;
@@ -32,6 +32,5 @@ a {
 }
 
 button:hover {
-  // transform: scale(1.05);
   cursor: pointer;
 }

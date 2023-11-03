@@ -161,17 +161,11 @@ export default class PianoRoll {
       this.svgElement.appendChild(line);
     }
   }
-  // getDuration() {
-  //   if (this.start !== null && this.end !== null) {
-  //     return this.end - this.start;
-  //   }
-  //   return 0;
-  // }
 }
 
 export const createPianoRoll = (data, rollId, svg) => {
   if (!data?.length || !svg) return;
-  const pianoRoll = new PianoRoll(
+  new PianoRoll(
     svg,
     data.slice(rollId * 60, (rollId + 1) * 60)
   );

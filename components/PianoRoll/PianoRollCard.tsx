@@ -18,7 +18,7 @@ const PianoRollCard = ({ rollId, data }: PianoRollCardProps) => {
 
   useEffect(() => {
     if (data.length) createPianoRoll(data, rollId, svgRef.current);
-  }, [data]);
+  }, [data, rollId]);
 
   return (
     <SkeletonTheme
