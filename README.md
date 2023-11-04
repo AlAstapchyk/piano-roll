@@ -27,13 +27,13 @@ Your task is to implement a tool or an overlay on the piano roll that allows use
 Main technologies used: React, Next, Redux.
 
 #### Grid layout
-<img width="1120" alt="Screenshot 2023-11-02 214354" src="https://github.com/AlAstapchyk/piano-roll/assets/104316850/25d3a2d6-e49a-4f15-8aa2-2b15b28a6d8f">
+<img width="1120" alt="Screenshot 2023-11-02 214354" src="https://github.com/AlAstapchyk/piano-roll/assets/104316850/108c498c-dddd-4334-bfee-2ffb6af26ef9">
 
 #### RWD and skeleton loading
-<img width="370" alt="Screenshot 2023-11-02 220118" src="https://github.com/AlAstapchyk/piano-roll/assets/104316850/044f52f1-ae08-4013-8463-8483cf9feb03">
+<img width="370" alt="Screenshot 2023-11-02 220118" src="https://github.com/AlAstapchyk/piano-roll/assets/104316850/335381d7-7d22-411c-a0c1-7c503ab49f7b">
 
 #### Main View
-<img width="1120" alt="Screenshot 2023-11-03 034058" src="https://github.com/AlAstapchyk/piano-roll/assets/104316850/aa7958b9-b9b3-4b64-a599-b8267f17e73b">
+<img width="1120" alt="Screenshot 2023-11-03 034058" src="https://github.com/AlAstapchyk/piano-roll/assets/104316850/a71e6104-717d-4188-9c39-88cc0eb2bb9c">
 
 ## Getting Started
 
